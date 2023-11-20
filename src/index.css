@@ -7,6 +7,16 @@
 body {
   padding: 0;
   margin: 0;
+  background-color: #212529 !important;
+}
+
+.ls {
+  text-align: center;
+}
+
+.ls-dash{
+  text-align: center;
+  color: #ddd;
 }
 
 label {
@@ -14,12 +24,20 @@ label {
 }
 
 .form {
-  width: 400px;
-  margin: 0 auto;
+  width: 80%;
+  max-width: 400px;
+  /* Establecer un ancho máximo para evitar que el formulario se estire demasiado */
+  margin: 5% auto;
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 5%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
 }
 
 input[type="text"],
-[type="password"] {
+input[type="password"] {
   display: block;
   padding: 10px;
   box-sizing: border-box;
@@ -33,30 +51,39 @@ button {
   padding: 10px;
   border: 0;
   min-width: 100px;
-  border-radius: 5px;
   color: white;
+  cursor: pointer;
 }
 
-nav {
-  background-color: #eee;
+.navbar {
+  background-color: #3f88c5;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 120%;
 }
 
-nav ul {
+.navbar a {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar ul {
   margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  margin-left: auto;
+  margin-right: 10%;
 }
 
-nav ul li {
+.navbar ul li {
   display: inline-block;
   padding: 10px;
 }
 
-a {
-  color: rgb(97, 28, 161);
-  text-decoration: none;
-}
-
 .dashboard {
-  width: 500px;
+  width: 80%;
   margin: auto;
 }
 

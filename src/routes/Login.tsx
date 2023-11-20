@@ -4,6 +4,11 @@ import { useAuth } from "../auth/AuthProvider";
 import { Navigate, useNavigate } from "react-router-dom";
 import { API_URL } from "../auth/constants";
 import { AuthResponseError } from "../types/types";
+import '../index.css';
+
+
+
+
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -59,7 +64,7 @@ export default function Login() {
     <>
       <DefaultLayout>
         <form className="form" onSubmit={handleSubmit}>
-          <h1>Login</h1>
+          <h1 className="ls">Login</h1>
           {!!errorResponse && <div className="errorMessage">{errorResponse}</div>}
           <label>
             Username

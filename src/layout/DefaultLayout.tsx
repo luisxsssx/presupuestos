@@ -8,7 +8,7 @@ export default function DefaultLayout({ children }: DefaultLayoutProps) {
   return (
     <>
       <header>
-        <nav>
+        <nav className="navbar">
           <ul>
             <li>
               <Link to="/">Login</Link>

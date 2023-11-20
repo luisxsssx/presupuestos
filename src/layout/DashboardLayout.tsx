@@ -17,15 +17,13 @@ export default function DashboardLayout({ children }: DefaultLayoutProps) {
     return (
     <>
       <header>
-        <nav>
-          <nav>
+         <nav className="navbar">
             <ul>
               <li>
                 <Link to="/" onClick={handleLogout}>Exit</Link>
               </li>
             </ul>
           </nav>
-        </nav>
       </header>
       <main>{children}</main>
     </>
