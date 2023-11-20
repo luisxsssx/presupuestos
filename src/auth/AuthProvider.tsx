@@ -13,27 +13,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
 
   const contextValue: AuthContextProps = {
-    isAuthenticated,
-    setAccessToken: (token) => {
-      setAccessToken(token);
-      setIsAuthenticated(true);
-      localStorage.setItem("accessToken", token); // Almacena el token en localStorage
-    },
-    logout: () => {
-      setAccessToken(null);
-      setIsAuthenticated(false);
-      localStorage.removeItem("accessToken");  // Elimina el token de localStorage
-    }
-  };
+  isAuthenticated,
+  setAccessToken: (token) => {
+    setAccessToken(token);
+    setIsAuthenticated(true);
+    localStorage.setItem("accessToken", token);
+  },
+  logout: () => {
+    localStorage.removeItem("accessToken");
+    setAccessToken(null);
+    setIsAuthenticated(false);
+  }
+};
+
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("accessToken");
+  const storedToken = localStorage.getItem("accessToken");
 
-    if (storedToken){ 
-      setAccessToken(storedToken);
-      setIsAuthenticated(true)
-    }
-  }, []);
+  if (storedToken) { 
+    setAccessToken(storedToken);
+    setIsAuthenticated(true);
+  } else {
+    setAccessToken(null);
+    setIsAuthenticated(false);
+  }
+}, []);
+
 
   return (
     <AuthContext.Provider value={contextValue}>

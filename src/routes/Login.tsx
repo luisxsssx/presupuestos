@@ -6,9 +6,6 @@ import { API_URL } from "../auth/constants";
 import { AuthResponseError } from "../types/types";
 import '../index.css';
 
-
-
-
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

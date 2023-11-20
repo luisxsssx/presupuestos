@@ -1,7 +1,15 @@
-import DashboardLayout from "../layout/DashboardLayout";
+import { useNavigate } from "react-router-dom";
+import DashboardLayout from "../../layout/DashboardLayout";
 
 
 export default function Dashboard() {
+
+  const navigate = useNavigate();
+
+  const handleNavigate = (path: string) => {
+    navigate(path);
+  }
+
   return (
     <>
       <DashboardLayout>
@@ -10,28 +18,28 @@ export default function Dashboard() {
           <div className="card-container">
             <h2>Productos</h2>
             <p>Ver y agregar prodcutos</p>
-            <button>Ver o Agregar</button>
+            <button onClick={() => handleNavigate('/productos')}>Ver o Agregar</button>
           </div>
         </div>
         <div className="form card-pre">
           <div className="card-container">
             <h2>Hacer presupuestos</h2>
             <p>Crear presupuestos</p>
-            <button>Crear</button>
+            <button onClick={() => handleNavigate('/presupuestos')}>Crear</button>
           </div>
         </div>
         <div className="form card-preh">
           <div className="card-container">
             <h2>Historial de presupuestos</h2>
             <p>Ver historial de presupuestos</p>
-            <button>Ver</button>
+            <button onClick={() => handleNavigate('/historial')}>Ver</button>
           </div>
         </div>
         <div className="form card-preh">
           <div className="card-container">
             <h2>Clientes</h2>
             <p>Ver clientes</p>
-            <button>Ver</button>
+            <button onClick={() => handleNavigate('/clientes')}>Ver</button>
           </div>
         </div>
       </DashboardLayout>
