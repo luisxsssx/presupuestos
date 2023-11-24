@@ -9,9 +9,14 @@ export default function DashboardLayout({ children }: DefaultLayoutProps) {
   const { isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
 
-  const handleLogout = () => {
-    logout();
-    navigate("/");
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/");
+    } catch (error) {
+      console.error("Error al cerrar sesión:", error);
+      // Manejar el error, si es necesario
+    }
   }
 
   return (
@@ -20,7 +25,6 @@ export default function DashboardLayout({ children }: DefaultLayoutProps) {
          <nav className="navbar">
             <ul>
               <li>
-                {/* Agrega el manejador de clic al enlace */}
                 <Link to="/" onClick={handleLogout}>Exit</Link>
               </li>
             </ul>

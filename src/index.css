@@ -92,3 +92,25 @@ button {
   color: #a94442;
   padding: 10px;
 }
+
+.float {
+  transition: .5s, color .10s;
+  -webkit-transition: .5s, color .10s;
+  -moz-transition: .5s, color .10s;
+}
+
+.float:hover {
+  box-shadow: 0 8px 8px 0 #457b9d, 0 8px 8px 0 #457b9d;
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  -moz-transform: translate(0px, 5px);
+}
+
+.pr{
+  color: #ddd;
+  text-align: center;
+}
+
+.th{
+  text-align: center;
+}

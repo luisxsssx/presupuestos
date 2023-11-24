@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DefaultLayout from "../layout/DefaultLayout";
 import { useAuth } from "../auth/AuthProvider";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -9,11 +9,18 @@ import '../index.css';
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [errorResponse, setErrorResponse] = useState<string | null>(null);
   const auth = useAuth();
-  const [errorResponse, setErrorResponse] = useState("");
-  const goTo = useNavigate();
+  const navigate = useNavigate();
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  useEffect(() => {
+    // Si el usuario ya está autenticado, redirige al dashboard
+    if (auth.isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [auth.isAuthenticated, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
@@ -39,49 +46,43 @@ export default function Login() {
         auth.setAccessToken(accessToken);
 
         console.log("Login successfully");
-        setErrorResponse("");
-
-        goTo("/");
+        setErrorResponse(null);
       } else {
         console.log("Something went wrong");
         const json = await response.json() as AuthResponseError;
         setErrorResponse(json.body.error);
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error during login:", error);
+      setErrorResponse("An unexpected error occurred");
     }
-  }
-
-  if (auth.isAuthenticated) {
-    // Si el usuario ya está autenticado, redirige al dashboard
-    return <Navigate to="/dashboard" />;
-  }
+  };
 
   return (
-    <>
-      <DefaultLayout>
-        <form className="form" onSubmit={handleSubmit}>
-          <h1 className="ls">Login</h1>
-          {!!errorResponse && <div className="errorMessage">{errorResponse}</div>}
-          <label>
-            Username
-          </label>
+    <DefaultLayout>
+      <form className="form" onSubmit={handleSubmit}>
+        <h1 className="ls" >Login</h1>
+        {errorResponse && <div className="errorMessage">{errorResponse}</div>}
+        <label>
+          Username
           <input
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
+        </label>
 
-          <label>Password</label>
+        <label>
+          Password
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+        </label>
 
-          <button>Login</button>
-        </form>
-      </DefaultLayout>
-    </>
+        <button type="submit" className="float">Login</button>
+      </form>
+    </DefaultLayout>
   );
 }
