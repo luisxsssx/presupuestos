@@ -67,6 +67,8 @@ export default function Login() {
           Username
           <input
             type="text"
+            className="form-control"
+            id="exampleFormControlInput1" 
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
@@ -76,12 +78,14 @@ export default function Login() {
           Password
           <input
             type="password"
+            className="form-control" 
+            id="inputPassword"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
 
-        <button type="submit" className="float">Login</button>
+        <button type="submit" className="float btn btn-primary btn-lg">Login</button>
       </form>
     </DefaultLayout>
   );

@@ -1,11 +1,15 @@
-import Sidebar from "../../layout/Sidebar";
+import DashboardLayout from "../../layout/DashboardLayout";
 
 export default function Presupuestos(){
     return(
         <>
-        <Sidebar>
-            <div className="form"></div>
-        </Sidebar>
+        <DashboardLayout>
+            <form>
+                <div className="space-y-12">
+                    <h2 className="text-base font-semibold leading-7 text-gray-900">Profile</h2>
+                </div>
+            </form>
+        </DashboardLayout>
         </>
     )
 }

@@ -1,6 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import DashboardLayout from "../../layout/DashboardLayout";
 import imgPro from "../../assets/imgPro.png";
+import price from "../../assets/price.png";
+import historial from "../../assets/historial.png";
+import clientes from "../../assets/clientes.png";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -12,61 +15,61 @@ export default function Dashboard() {
   return (
     <>
       <DashboardLayout>
-        <div className="row row-cols-1 row-cols-md-2 g-4">
+        <div className="container d-flex justify-content-center align-items-center">
           <div className="col">
-            <div className="card">
-              <img src={imgPro} className="card-img-top" alt="Descripción de la imagen" style={{ width: '50%', height: '10%', borderRadius: '8px', justifyContent: "center" }} />
+            <div className="card" style={{ width: "18rem" }}>
+              <img src={imgPro} className="card-img-top" />
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
+                <h5 className="card-title">Productos</h5>
                 <p className="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                  Ingresa aqui para ver y agregar productos
                 </p>
-                <button className="float" onClick={()=> handleNavigate("/productos")}>
-            Ver o Agregar
-          </button>
-                </div>
-            </div>
-          </div>
-          <div className="col">
-            <div className="card">
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                 <button className="float" onClick={()=> handleNavigate("/presupuestos")}>
-            Crear
-          </button>
+                <Link to="/productos"  className="float btn btn-primary btn-lg">
+                  Ingresar
+                </Link>
               </div>
             </div>
           </div>
           <div className="col">
-            <div className="card">
+            <div className="card" style={{ width: "18rem" }}>
+              <img src={price} className="card-img-top" />
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
+                <h5 className="card-title">Ingrese a presupuestos</h5>
                 <p className="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content.
+                  Ingresa aqui para ver y agregar productos
                 </p>
-                <button className="float" onClick={()=> handleNavigate("/historial")}>Ver</button>
+                <Link to="/presupuestos"  className="float btn btn-primary btn-lg">
+                  Ingresar
+                </Link>
               </div>
             </div>
           </div>
           <div className="col">
-            <div className="card">
+            <div className="card" style={{ width: "18rem" }}>
+              <img src={historial} className="card-img-top" />
               <div className="card-body">
-                <h5 className="card-title">Card title</h5>
+                <h5 className="card-title">Historial de presupuestos</h5>
                 <p className="card-text">
-                  This is a longer card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
+                  Ingresa aqui para ver y agregar productos
                 </p>
+                <Link to="/historial"  className="float btn btn-primary btn-lg">
+                  Ingresar
+                </Link>
               </div>
-              <button className="float" onClick={()=> handleNavigate("/clientes")}>Ver</button>
+            </div>
+          </div>
+          <div className="col">
+            <div className="card" style={{ width: "18rem" }}>
+              <img src={clientes} className="card-img-top" />
+              <div className="card-body">
+                <h5 className="card-title">Clientes</h5>
+                <p className="card-text">
+                  Ingresa aqui para ver y agregar productos
+                </p>
+                <Link to="/clientes"  className="float btn btn-primary btn-lg">
+                  Ingresar
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -65,6 +65,7 @@ export default function Signup() {
           <input
             type="text"
             value={username}
+            className="form-control"
             onChange={(e) => setUsername(e.target.value)}
           />
 
@@ -72,6 +73,7 @@ export default function Signup() {
           <input
             type="text"
             value={lastname}
+            className="form-control"
             onChange={(e) => setLastname(e.target.value)}
           />
 
@@ -79,6 +81,7 @@ export default function Signup() {
           <input
             type="text"
             value={firstname}
+            className="form-control"
             onChange={(e) => setFirstname(e.target.value)}
           />
 
@@ -86,6 +89,7 @@ export default function Signup() {
           <input
             type="text"
             value={country}
+            className="form-control"
             onChange={(e) => setCountry(e.target.value)}
           />
 
@@ -93,10 +97,11 @@ export default function Signup() {
           <input
             type="password"
             value={password}
+            className="form-control"
             onChange={(e) => setPassword(e.target.value)}
           />
 
-          <button className="float">Create User</button>
+          <button className="btn btn-primary btn-lg">Create User</button>
         </form>
       </DefaultLayout>
     </>
