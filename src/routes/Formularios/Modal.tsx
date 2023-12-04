@@ -1,3 +1,5 @@
+import { GrClose } from "react-icons/gr";
+
 interface ModalProps {
   onClose: () => void;
   show: boolean;
@@ -11,7 +13,7 @@ export default function Modal({ onClose, show, children }: ModalProps) {
       <div className="addP">
         <div className="con">
             <button className="modal-close" onClick={onClose}>
-          X
+          <GrClose />
         </button>
         </div>
         {children}

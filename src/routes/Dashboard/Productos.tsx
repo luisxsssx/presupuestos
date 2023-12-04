@@ -1,4 +1,4 @@
-import { URL_PRODUCTS } from "../../auth/constants";
+import { PRODUCT_URL, URL_PRODUCTS } from "../../auth/constants";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthProvider";
 import LayoutNav from "../../layout/Layout";
@@ -13,11 +13,45 @@ interface Products {
   price: number;
 }
 
-export default function Productos() {
+interface ProductProps {
+  products: Products[];
+  deleteProduct: (id: number) => void;
+}
+
+export default function Productos({ deleteProduct }: ProductProps) {
   const [products, setProducts] = useState<Products[]>([]);
   const navigate = useNavigate();
   const auth = useAuth();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
+  const handleDelete = async (id: number) => {
+    try {
+      const response = await fetch(`${PRODUCT_URL}${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        const updateProducts = products.filter(products => products.id !== id);
+        setProducts(updateProducts);
+      } else {
+        console.error('Error deleting product:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Error deleting product:', error);
+    }
+  }
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   const handleShowModal = () => {
     console.log("Modal abierto");
@@ -81,6 +115,14 @@ export default function Productos() {
         <Modal onClose={handleCloseModal} show={isModalOpen}>
           <AddProduct onClose={handleCloseModal} />
         </Modal>
+        <input
+          className="form-control me-2"
+          type="text"
+          aria-label="Search"
+          placeholder="Buscar Producto"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
       </div>
       <div className="table-container table_reponsive">
         <h2 className="display-danger pr">Productos</h2>
@@ -91,15 +133,20 @@ export default function Productos() {
               <th>Name Product</th>
               <th>Description</th>
               <th>Price</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <tr key={product.id}>
                 <td>{product.id}</td>
                 <td>{product.name}</td>
                 <td>{product.description}</td>
                 <td>{product.price}</td>
+                <td>
+                  <button className="btnA btn btn-danger" onClick={() => handleDelete(product.id)}>Delete</button>
+                  <button className="btnA btn btn-primary">Update</button>
+                </td>
               </tr>
             ))}
           </tbody>

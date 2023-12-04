@@ -158,10 +158,15 @@ button {
 
 .bt {
   padding: 10px;
+  margin-bottom: 1vh;
+}
+
+.btn {
+  margin-bottom: 1vh;
 }
 
 .table-container{
-  margin: 5vh;
+  margin: 1vh;
 }
 
 .form-label{
@@ -170,4 +175,8 @@ button {
 
 .float{
   margin: 5%;
+}
+
+.btnA{
+  margin-left: 3vh;
 }
