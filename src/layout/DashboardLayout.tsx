@@ -25,7 +25,7 @@ export default function DashboardLayout({ children }: DefaultLayoutProps) {
          <nav className="navbar">
             <ul>
               <li>
-                <Link to="/" onClick={handleLogout}>Exit</Link>
+                <Link to="/dashboard" onClick={handleLogout}>Exit</Link>
               </li>
             </ul>
           </nav>
